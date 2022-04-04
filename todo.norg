@@ -1,0 +1,15 @@
+@document.meta
+        title: todo
+        description: Todos for neorg-contexts
+        authors: max
+        categories: 
+        created: 2022-04-04
+        version: 0.0.11
+@end
+
+- [x] Setup logic to open/update window
+- [!] Correctly get titles (go down in tree to `title`) 
+- [ ] Don't display things which are visible on screen
+- [ ] highlights
+- [ ] Icons
+- [ ] Fix indent of window
