@@ -37,6 +37,7 @@ end
 
 local function open_win()
     set_buf()
+    local col = vim.fn.getwininfo(vim.api.nvim_get_current_win())[1].textoff
     local lines = get_contexts()
     if #lines == 0 then
         return
@@ -44,10 +45,10 @@ local function open_win()
     if not winnr or not vim.api.nvim_win_is_valid(winnr) then
         winnr = vim.api.nvim_open_win(bufnr, false, {
             relative = "win",
-            width = vim.api.nvim_win_get_width(0),
+            width = vim.api.nvim_win_get_width(0) - col,
             height = #lines,
             row = 0,
-            col = 1,
+            col = col,
             focusable = false,
             style = "minimal",
             noautocmd = true,
