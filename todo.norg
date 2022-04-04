@@ -8,8 +8,8 @@
 @end
 
 - [x] Setup logic to open/update window
-- [!] Correctly get titles (go down in tree to `title`) 
+- [x] Correctly get titles (go down in tree to `title`) 
 - [ ] Don't display things which are visible on screen
-- [ ] highlights
+- [x] highlights
 - [ ] Icons
-- [ ] Fix indent of window
+- [x] Fix indent of window
