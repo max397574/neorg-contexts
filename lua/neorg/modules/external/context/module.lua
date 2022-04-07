@@ -128,9 +128,19 @@ module.private = {
         vim.api.nvim_win_set_option(winnr, "winhl", "NormalFloat:NeorgContext")
     end,
     update_window = function()
+        if not module.private.enabled then
+            if winnr and vim.api.nvim_win_is_valid(winnr) then
+                vim.api.nvim_win_close(winnr, true)
+            end
+            return
+        end
         if vim.bo.filetype ~= "norg" then
             return
         end
+        if string.find(vim.api.nvim_buf_get_name(0), "neorg://") then
+            return
+        end
+
         module.private.open_win()
     end,
 }
@@ -149,7 +159,7 @@ module.load = function()
             },
         },
         data = {
-            journal = {
+            context = {
                 min_args = 1,
                 max_args = 1,
                 subcommands = {
@@ -172,11 +182,11 @@ end
 module.on_event = function(event)
     if vim.tbl_contains({ "core.keybinds", "core.neorgcmd" }, event.split_type[1]) then
         if event.split_type[2] == "context.toggle" then
-            module.private.diary_tomorrow()
+            module.private.toggle()
         elseif event.split_type[2] == "context.enable" then
-            module.private.diary_yesterday()
-        elseif event.split_type[2] == "context.disale" then
-            module.private.open_diary(nil, event.content[1])
+            module.private.enable()
+        elseif event.split_type[2] == "context.disable" then
+            module.private.disable()
         end
     end
 end
