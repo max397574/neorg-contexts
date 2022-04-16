@@ -49,7 +49,7 @@ module.private = {
             ["heading5"] = neorg.modules.get_module_config("core.norg.concealer").icons.heading.level_5.icon .. " ",
             ["heading6"] = neorg.modules.get_module_config("core.norg.concealer").icons.heading.level_6.icon .. " ",
         }
-        local node = ts_utils.get_node_at_cursor()
+        local node = ts_utils.get_node_at_cursor(0, true)
         local lines = {}
         local heading_nodes = {}
         local highlights = {}
@@ -135,9 +135,15 @@ module.private = {
             return
         end
         if vim.bo.filetype ~= "norg" then
+            if winnr and vim.api.nvim_win_is_valid(winnr) then
+                vim.api.nvim_win_close(winnr, true)
+            end
             return
         end
         if string.find(vim.api.nvim_buf_get_name(0), "neorg://") then
+            if winnr and vim.api.nvim_win_is_valid(winnr) then
+                vim.api.nvim_win_close(winnr, true)
+            end
             return
         end
 
