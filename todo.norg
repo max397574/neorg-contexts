@@ -11,5 +11,5 @@
 - [x] Correctly get titles (go down in tree to `title`) 
 - [ ] Don't display things which are visible on screen
 - [x] highlights
-- [ ] Icons
+- [x] Icons
 - [x] Fix indent of window
