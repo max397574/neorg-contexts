@@ -71,7 +71,7 @@ module.private = {
             table.insert(prefixes, prefix_table[heading_node:type()])
         end
         for _, title_node in ipairs(title_nodes) do
-            table.insert(lines, ts_utils.get_node_text(title_node, 0)[1])
+            table.insert(lines, vim.split(vim.treesitter.query.get_node_text(title_node, 0)("\n"))[1])
         end
         local correct_lines = {}
         local correct_highlights = {}
@@ -101,6 +101,7 @@ module.private = {
         if #lines == 0 then
             if winnr and vim.api.nvim_win_is_valid(winnr) then
                 vim.api.nvim_win_close(winnr, true)
+                winnr = nil
             end
             return
         end
@@ -131,18 +132,21 @@ module.private = {
         if not module.private.enabled then
             if winnr and vim.api.nvim_win_is_valid(winnr) then
                 vim.api.nvim_win_close(winnr, true)
+                winnr = nil
             end
             return
         end
         if vim.bo.filetype ~= "norg" then
             if winnr and vim.api.nvim_win_is_valid(winnr) then
                 vim.api.nvim_win_close(winnr, true)
+                winnr = nil
             end
             return
         end
         if string.find(vim.api.nvim_buf_get_name(0), "neorg://") then
             if winnr and vim.api.nvim_win_is_valid(winnr) then
                 vim.api.nvim_win_close(winnr, true)
+                winnr = nil
             end
             return
         end
