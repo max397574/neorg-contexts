@@ -53,8 +53,25 @@ module.private = {
         local lines = {}
         local heading_nodes = {}
         local highlights = {}
+
+        local function is_valid(potential_node)
+            local topline = vim.fn.line("w0")
+            local row = potential_node:start()
+            return row <= (topline + #heading_nodes)
+        end
+
+        local function validate_heading_nodes()
+            local valid_heading_nodes = heading_nodes
+            for i = #heading_nodes, 1, -1 do
+                if not is_valid(valid_heading_nodes[i]) then
+                    table.remove(valid_heading_nodes, i)
+                end
+            end
+            return valid_heading_nodes
+        end
+
         while node do
-            if node:type():find("heading") then
+            if node:type():find("heading") and is_valid(node) then
                 table.insert(heading_nodes, node)
             end
             if node:parent() then
@@ -63,6 +80,7 @@ module.private = {
                 break
             end
         end
+        heading_nodes = validate_heading_nodes()
         local title_nodes = {}
         local prefixes = {}
         for _, heading_node in ipairs(heading_nodes) do
