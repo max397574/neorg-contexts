@@ -34,12 +34,12 @@ module.private = {
     end,
     get_contexts = function()
         local highlight_table = {
-            ["heading1"] = "NeorgHeading1Title",
-            ["heading2"] = "NeorgHeading2Title",
-            ["heading3"] = "NeorgHeading3Title",
-            ["heading4"] = "NeorgHeading4Title",
-            ["heading5"] = "NeorgHeading5Title",
-            ["heading6"] = "NeorgHeading6Title",
+            ["heading1"] = "@neorg.headings.1.title",
+            ["heading2"] = "@neorg.headings.2.title",
+            ["heading3"] = "@neorg.headings.3.title",
+            ["heading4"] = "@neorg.headings.4.title",
+            ["heading5"] = "@neorg.headings.5.title",
+            ["heading6"] = "@neorg.headings.6.title",
         }
         local prefix_table = {
             ["heading1"] = neorg.modules.get_module_config("core.norg.concealer").icons.heading.level_1.icon .. " ",
