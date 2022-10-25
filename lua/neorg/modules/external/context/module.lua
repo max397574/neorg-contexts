@@ -179,22 +179,13 @@ module.public = {}
 
 module.load = function()
     module.required["core.neorgcmd"].add_commands_from_table({
-        definitions = {
-            context = {
-                toggle = {},
-                enable = {},
-                disable = {},
-            },
-        },
-        data = {
-            context = {
-                min_args = 1,
-                max_args = 1,
-                subcommands = {
-                    toggle = { args = 0, name = "context.toggle" },
-                    enable = { args = 0, name = "context.enable" },
-                    disable = { args = 0, name = "context.disable" },
-                },
+        context = {
+            min_args = 1,
+            max_args = 1,
+            subcommands = {
+                toggle = { args = 0, name = "context.toggle" },
+                enable = { args = 0, name = "context.enable" },
+                disable = { args = 0, name = "context.disable" },
             },
         },
     })
