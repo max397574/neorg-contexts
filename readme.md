@@ -11,3 +11,7 @@ You can use load this module by putting
 ["external.context"] = {},
 ```
 into your setup.
+
+## ❤️ Support
+If you like the projects I do and they can help you in your life you can support my work with [github sponsors](https://github.com/sponsors/max397574).
+Every support motivates me to continue working on my open source projects.
