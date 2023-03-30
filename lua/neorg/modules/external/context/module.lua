@@ -89,7 +89,14 @@ module.private = {
             table.insert(prefixes, prefix_table[heading_node:type()])
         end
         for _, title_node in ipairs(title_nodes) do
-            table.insert(lines, vim.split(vim.treesitter.query.get_node_text(title_node, 0), "\n")[1])
+            table.insert(
+                lines,
+                vim.split(
+                    vim.treesitter.get_node_text and vim.treesitter.get_node_text(title_node, 0, {})
+                        or vim.treesitter.query.get_node_text(title_node, 0),
+                    "\n"
+                )[1]
+            )
         end
         local correct_lines = {}
         local correct_highlights = {}
