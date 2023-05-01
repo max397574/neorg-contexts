@@ -13,6 +13,7 @@ module.setup = function()
         success = true,
         requires = {
             "core.neorgcmd",
+            "core.concealer",
         },
     }
 end
