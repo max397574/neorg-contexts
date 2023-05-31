@@ -43,12 +43,12 @@ module.private = {
             ["heading6"] = "@neorg.headings.6.title",
         }
         local prefix_table = {
-            ["heading1"] = neorg.modules.get_module_config("core.concealer").icons.heading.level_1.icon .. " ",
-            ["heading2"] = neorg.modules.get_module_config("core.concealer").icons.heading.level_2.icon .. " ",
-            ["heading3"] = neorg.modules.get_module_config("core.concealer").icons.heading.level_3.icon .. " ",
-            ["heading4"] = neorg.modules.get_module_config("core.concealer").icons.heading.level_4.icon .. " ",
-            ["heading5"] = neorg.modules.get_module_config("core.concealer").icons.heading.level_5.icon .. " ",
-            ["heading6"] = neorg.modules.get_module_config("core.concealer").icons.heading.level_6.icon .. " ",
+            ["heading1"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[1].. " ",
+            ["heading2"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[2].. " ",
+            ["heading3"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[3].. " ",
+            ["heading4"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[4].. " ",
+            ["heading5"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[5].. " ",
+            ["heading6"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[6].. " ",
         }
         local node = ts_utils.get_node_at_cursor(0, true)
         local lines = {}
