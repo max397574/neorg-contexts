@@ -1,4 +1,4 @@
-require("neorg.modules.base")
+local neorg = require("neorg.core")
 local ts_utils = require("nvim-treesitter.ts_utils")
 local winnr = nil
 local bufnr = nil
@@ -43,12 +43,12 @@ module.private = {
             ["heading6"] = "@neorg.headings.6.title",
         }
         local prefix_table = {
-            ["heading1"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[1].. " ",
-            ["heading2"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[2].. " ",
-            ["heading3"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[3].. " ",
-            ["heading4"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[4].. " ",
-            ["heading5"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[5].. " ",
-            ["heading6"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[6].. " ",
+            ["heading1"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[1] .. " ",
+            ["heading2"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[2] .. " ",
+            ["heading3"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[3] .. " ",
+            ["heading4"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[4] .. " ",
+            ["heading5"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[5] .. " ",
+            ["heading6"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[6] .. " ",
         }
         local node = ts_utils.get_node_at_cursor(0, true)
         local lines = {}
