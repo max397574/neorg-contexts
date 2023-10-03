@@ -1,5 +1,8 @@
 local neorg = require("neorg.core")
-local ts_utils = require("nvim-treesitter.ts_utils")
+local ts_utils
+if not vim.treesitter.get_node then
+    ts_utils = require("nvim-treesitter.ts_utils")
+end
 local winnr = nil
 local bufnr = nil
 local ns = vim.api.nvim_create_namespace("neorg-contexts")
@@ -50,7 +53,13 @@ module.private = {
             ["heading5"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[5] .. " ",
             ["heading6"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[6] .. " ",
         }
-        local node = ts_utils.get_node_at_cursor(0, true)
+        local node
+        -- TODO: remove after 0.10 release
+        if not vim.treesitter.get_node then
+            node = ts_utils.get_node_at_cursor(0, true)
+        else
+            node = vim.treesitter.get_node()
+        end
         local lines = {}
         local heading_nodes = {}
         local highlights = {}
