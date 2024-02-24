@@ -47,11 +47,21 @@ module.private = {
         }
         local prefix_table = {
             ["heading1"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[1] .. " ",
-            ["heading2"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[2] .. " ",
-            ["heading3"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[3] .. " ",
-            ["heading4"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[4] .. " ",
-            ["heading5"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[5] .. " ",
-            ["heading6"] = neorg.modules.get_module_config("core.concealer").icons.heading.icons[6] .. " ",
+            ["heading2"] = string.rep(" ", 1)
+                .. neorg.modules.get_module_config("core.concealer").icons.heading.icons[2]
+                .. " ",
+            ["heading3"] = string.rep(" ", 2)
+                .. neorg.modules.get_module_config("core.concealer").icons.heading.icons[3]
+                .. " ",
+            ["heading4"] = string.rep(" ", 3)
+                .. neorg.modules.get_module_config("core.concealer").icons.heading.icons[4]
+                .. " ",
+            ["heading5"] = string.rep(" ", 4)
+                .. neorg.modules.get_module_config("core.concealer").icons.heading.icons[5]
+                .. " ",
+            ["heading6"] = string.rep(" ", 5)
+                .. neorg.modules.get_module_config("core.concealer").icons.heading.icons[6]
+                .. " ",
         }
         local node
         -- TODO: remove after 0.10 release
@@ -103,7 +113,7 @@ module.private = {
                 lines,
                 vim.split(
                     vim.treesitter.get_node_text and vim.treesitter.get_node_text(title_node, 0, {})
-                        or vim.treesitter.query.get_node_text(title_node, 0),
+                        or vim.treesitter.get_node_text(title_node, 0),
                     "\n"
                 )[1]
             )
@@ -161,6 +171,9 @@ module.private = {
                 col = col,
             })
         end
+
+        -- TODO: use this after next neovim release
+        -- vim.api.nvim_set_option_value("winhl","NormalFloat:NeorgContext",{win=winnr})
         vim.api.nvim_win_set_option(winnr, "winhl", "NormalFloat:NeorgContext")
     end,
     update_window = function()
